@@ -11,39 +11,40 @@ import java.util.Arrays;
 @Configuration
 public class CorsConfig {
 
-    @Bean
-    public CorsFilter corsFilter() {
+        @Bean
+        public CorsFilter corsFilter() {
 
-        CorsConfiguration config = new CorsConfiguration();
+                CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(Arrays.asList(
-                "http://localhost:5173"
-        ));
+                config.setAllowedOrigins(Arrays.asList(
+                                "http://localhost:5173",
+                                "http://localhost:3000",
+                                "http://localhost:8080",
+                                "http://localhost:8081",
+                                "http://localhost:8082",
+                                "https://monex-frontend-pi.vercel.app"));
 
-        config.setAllowedMethods(Arrays.asList(
-                "GET",
-                "POST",
-                "PUT",
-                "DELETE",
-                "PATCH",
-                "OPTIONS"
-        ));
+                config.setAllowedMethods(Arrays.asList(
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "DELETE",
+                                "PATCH",
+                                "OPTIONS"));
 
-        config.setAllowedHeaders(Arrays.asList("*"));
+                config.setAllowedHeaders(Arrays.asList("*"));
 
-        config.setExposedHeaders(Arrays.asList(
-                "Authorization"
-        ));
+                config.setExposedHeaders(Arrays.asList(
+                                "Authorization"));
 
-        config.setAllowCredentials(true);
+                config.setAllowCredentials(true);
 
-        config.setMaxAge(3600L);
+                config.setMaxAge(3600L);
 
-        UrlBasedCorsConfigurationSource source =
-                new UrlBasedCorsConfigurationSource();
+                UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 
-        source.registerCorsConfiguration("/**", config);
+                source.registerCorsConfiguration("/**", config);
 
-        return new CorsFilter(source);
-    }
+                return new CorsFilter(source);
+        }
 }
